@@ -1,5 +1,6 @@
 #Sample Spring Boot App
 Spring boot app with
+- IntelliJ project
 - spring security 
 - roles and user tables
 - managed directory structure with controllers and services
