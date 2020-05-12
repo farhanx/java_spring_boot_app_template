@@ -1,5 +1,6 @@
-#Sample Spring Boot App
-Spring boot app with
+# Sample Spring Boot App
+
+_Spring boot app with_
 - IntelliJ project
 - spring security 
 - roles and user tables
