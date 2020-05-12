@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3" lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> test</title>
+    </head>
+
+    <body dir="auto">
+
+    <div class="wrapper-page animated fadeInDown">
+            <div class="panel panel-color panel-inverse">
+
+                <div class="panel-heading">
+                   <h3 class="text-center m-t-10" th:text="#{login.div.signInText}"></h3>
+                </div>
+
+                <form th:action="@{/login}" method="post" class="form-horizontal m-t-40">
+
+                    <div th:if="${param.error != null}" th:attr="dir=#{textDirection}">
+                        <div class="alert alert-danger" th:text="${session[SPRING_SECURITY_LAST_EXCEPTION]}"></div>
+                    </div>
+
+                    <div th:if="${param.message != null}" th:attr="dir=#{textDirection}">
+                        <div class="alert alert-danger" th:text="${param.message}"></div>
+                    </div>
+
+                    <div th:attr="dir=#{textDirection}" th:if="${param.logout}">
+                        <div class="alert alert-info" th:text="#{logged.out.successfully}"></div>
+                    </div>
+
+                    <div class="form-group ">
+                        <div class="col-xs-12">
+                            <input th:attr="dir=#{textDirection}" class="form-control" type="text" id="email" name="email" autofocus="autofocus"
+                                   th:placeholder="#{enter.email.here.placeholder}" minlength="5" required="true" />
+                        </div>
+                    </div>
+
+                    <div class="form-group ">
+                        <div class="col-xs-12">
+                            <input th:attr="dir=#{textDirection}" class="form-control" type="password" id="password" name="password"
+                                   th:placeholder="#{enter.password.here.placeholder}" required="true" />
+                        </div>
+                    </div>
+<!--                    TODO :: Add remember me functionality-->
+<!--                    <div class="form-group ">-->
+<!--                        <div class="col-xs-12">-->
+<!--                            <label class="cr-styled">-->
+<!--                                <input type="checkbox" checked>-->
+<!--                                <i class="fa"></i> -->
+<!--                                Remember me-->
+<!--                            </label>-->
+<!--                        </div>-->
+<!--                    </div>-->
+                    <div class="form-group text-right">
+                        <div class="col-xs-12">
+                            <input type="submit" class="btn btn-success w-md" th:value="#{login}" />
+                        </div>
+                    </div>
+                    <div class="form-group m-t-30">
+<!--                        TODO :: Add error message if the account is not activated-->
+<!--                        TODO :: Add recover password functionality-->
+                        <div class="col-sm-7" th:attr="dir=#{textDirection}">
+                            <a href="recoverpw.html" th:text="#{login.anchor.forgotPassword}"></a>
+                        </div>
+                        <div class="col-sm-5 text-right">
+                            <a th:href="@{/register}" th:text="#{login.anchor.createAccount}"></a>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+        <!-- js placed at the end of the document so the pages load faster -->
+
+    </body>
+</html>

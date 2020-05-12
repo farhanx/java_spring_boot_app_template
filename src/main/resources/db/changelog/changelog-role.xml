@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <property name="now" value="now()" dbms="h2"/>
+    <property name="now" value="now()" dbms="mysql"/>
+    <property name="autoIncrement" value="true"/>
+    <property name="floatType" value="float4" dbms="postgresql, h2"/>
+    <property name="floatType" value="float" dbms="mysql, oracle, mssql"/>
+
+
+    <changeSet id="changelog-role" author="Farhan">
+
+        <createTable tableName="role">
+            <column name="id" type="varchar(30)" >
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="description" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+
+        <modifySql dbms="mysql">
+            <append value=" engine innodb"/>
+        </modifySql>
+
+    </changeSet>
+
+    <changeSet author="Farhan" id="change-log-role-addrows">
+        <insert tableName="role">
+            <column name="id">USER</column>
+            <column name="description"> User Role</column>
+        </insert>
+        <insert tableName="role">
+            <column name="id">ADMIN</column>
+            <column name="description"> Admin Role</column>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

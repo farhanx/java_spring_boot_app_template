@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <property name="now" value="now()" dbms="h2"/>
+    <property name="now" value="now()" dbms="mysql"/>
+    <property name="autoIncrement" value="true"/>
+    <property name="floatType" value="float4" dbms="postgresql, h2"/>
+    <property name="floatType" value="float" dbms="mysql, oracle, mssql"/>
+
+
+    <changeSet id="changelog-user" author="Farhan">
+        <createTable tableName="user">
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="email" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="pass_hash" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="role_id" type="varchar(30)">
+                <constraints nullable="false" unique="true" uniqueConstraintName="ux_roleid_pkey" />
+            </column>
+            <column name="status" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="creation_date" type="bigint">
+                <constraints nullable="true" />
+            </column>
+        </createTable>
+        <modifySql dbms="mysql">
+            <append value=" engine innodb"/>
+        </modifySql>
+
+    </changeSet>
+
+    <changeSet author="Farhan" id="changelog-user-2">
+        <createIndex indexName="fk_role_id" tableName="user">
+            <column name="role_id"/>
+        </createIndex>
+    </changeSet>
+
+    <changeSet author="Farhan" id="changelog-user-3">
+
+        <addForeignKeyConstraint baseColumnNames="role_id"
+                                 baseTableName="user"
+                                 constraintName="fk_role_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="role"/>
+    </changeSet>
+
+
+</databaseChangeLog>

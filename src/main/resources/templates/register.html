@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> test</title>
+</head>
+<body th:attr="dir=#{textDirection}">
+    <div class="wrapper-page animated fadeInDown">
+        <div class="panel panel-color panel-inverse">
+            <div class="panel-heading">
+                <h3 class="text-center m-t-10" th:text="#{register.title}"></h3>
+            </div>
+
+            <form action="#" th:action="@{/register}" th:object="${register}" method="post" class="form-horizontal m-t-40">
+                <div th:if="${msg}" th:attr="dir=#{textDirection}">
+                    <div class="alert alert-danger" th:text="${msg}" />
+                </div>
+
+                <div class="form-group ">
+                    <div class="col-xs-12">
+                        <input th:attr="dir=#{textDirection}" class="form-control" th:field="*{email}" type="email" id="email" name="email"
+                               th:placeholder="#{enter.email.here.placeholder}" />
+                        <p th:attr="dir=#{textDirection}" class="error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+                    </div>
+                </div>
+
+                <div class="form-group ">
+                    <div class="col-xs-12">
+                        <input th:attr="dir=#{textDirection}" class="form-control" th:field="*{confirmEmail}" type="email" id="confirmEmail" name="confirmEmail"
+                               th:placeholder="#{enter.confirm.email.here.placeholder}" />
+<!--                        required="true"-->
+                        <p th:attr="dir=#{textDirection}" class="error" th:if="${#fields.hasErrors('confirmEmail')}" th:errors="*{confirmEmail}"></p>
+                    </div>
+                </div>
+
+                <div class="form-group ">
+                    <div class="col-xs-12">
+                        <input th:attr="dir=#{textDirection}" class="form-control" th:field="*{password}" type="password" id="password" name="password"
+                               th:placeholder="#{enter.password.here.placeholder}" />
+<!--                        required="true"-->
+                        <p th:attr="dir=#{textDirection}" class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
+                    </div>
+                </div>
+
+                <div class="form-group ">
+                    <div class="col-xs-12">
+                        <input th:attr="dir=#{textDirection}" class="form-control" th:field="*{confirmPassword}" type="password" id="confirmPassword" name="confirmPassword"
+                               th:placeholder="#{enter.confirm.password.here.placeholder}" />
+                        <p th:attr="dir=#{textDirection}" class="error" th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}"></p>
+                    </div>
+                </div>
+
+                <div class="form-group text-right">
+                    <div class="col-xs-12">
+                        <input type="submit" class="btn btn-success w-md" th:value="#{register}" />
+                    </div>
+                </div>
+
+                <div class="form-group m-t-30">
+                    <div class="col-sm-12 text-center">
+                        <a th:href="@{/login}" th:text="#{register.alreadyHasAccount}"></a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>First testing page</title>
+</head>
+<body>
+<h1>WELCOME to your dashboard</h1> <div th:text="${user.email}"></div>
+<hr>
+<b><a th:href="@{/logout}" th:text="#{logoff}"></a></b>
+
+<br><hr>
+
+this is a testing page
+test
+</body>
+</html>
